@@ -1,0 +1,61 @@
+<project name="NetFormTestApps" default="CreateTestAppWar" basedir=".">
+	<property name="example.war"  location="distribution/WAR"/>		
+	<property name="examplesrc"  location="source"/>		
+	<property name="servlet.jar" value="C:\Java\jakarta-tomcat-5.0.28\common\lib\servlet-api.jar"/>
+	<description>
+	</description>
+	<target name="CopyNetFormJars" description="Copy Net Form Jars To Project">
+		<copy todir="./webapp/WEB-INF/lib" file="../NetForm/netform.jar" />
+		<copy todir="./webapp/WEB-INF/lib" file="../NetForm/taglib-netform.jar" />
+	</target>
+	<target name="CopyNetFormTLD" description="Copy Net Form Jars To Project">
+		<copy todir="./webapp/WEB-INF" file="../NetForm/webapp/WEB-INF/netform.tld" />
+	</target>
+	
+	<target name="CreateTestAppWar" depends="Clean" description="Create Test application war"  >
+	<!-- Create temp dir for war file creation -->
+		<mkdir dir="${example.war}"/>
+		<mkdir dir="${example.war}/WEB-INF/lib"/>
+		<mkdir dir="${example.war}/WEB-INF/classes"/>	
+		<mkdir dir="${example.war}/WEB-INF/src"/>		
+		<copy todir="${example.war}/WEB-INF/lib" file="../NetForm/netform.jar" />
+		<copy todir="${example.war}/WEB-INF/lib" file="WebRoot/WEB-INF/lib/jstl.jar" />
+		<copy todir="${example.war}/WEB-INF/lib" file="WebRoot/WEB-INF/lib/standard.jar" />		
+		<copy todir="${example.war}/WEB-INF/lib" file="../NetForm/taglib-netform.jar" />		
+		<copy todir="${example.war}/WEB-INF/lib" file="../NetForm/dataset-netform.jar" />	
+		<copy todir="${example.war}/WEB-INF/lib" file="../DataSet/dataset.jar" />
+		<copy todir="${example.war}/WEB-INF" file="../NetForm/webapp/WEB-INF/netform.tld" />
+		<copy todir="${example.war}/WEB-INF/src">
+			<fileset dir="source">
+			</fileset>
+		</copy>			
+	<!-- Complile and create example application jar -->
+		<javac srcdir="${examplesrc}" destdir="${example.war}/WEB-INF/classes" optimize="true" nowarn="true" debug="true">
+			<classpath>
+				<pathelement location="${servlet.jar}"/>
+				<pathelement location="${example.war}/WEB-INF/lib/dataset.jar"/>
+				<pathelement location="${example.war}/WEB-INF/lib/netform.jar"/>
+				<pathelement location="${example.war}/WEB-INF/lib/taglib-netform.jar"/>
+				<pathelement location="${example.war}/WEB-INF/lib/dataset-netform.jar"/>				
+			</classpath>		
+		</javac>		
+		
+	<!-- Copy JSP files to JAR -->
+		<copy todir="${example.war}">
+			<fileset dir="WebRoot">
+				<include name="**/*.css"/>
+				<include name="**/*.jsp"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.jpg"/>								
+				<include name="**/*.xml"/>
+				<include name="**/*.tld"/>				
+			</fileset>
+		</copy>
+		<jar jarfile="netform.war" basedir="${example.war}" compress="true"/>
+		<delete dir="${example.war}" failonerror="false"/>
+	</target>
+	<target name="Clean" description="Clean Up" >
+		<delete dir="${example.war}"/>
+		<delete file="netform.war"/>
+	</target>	
+</project>

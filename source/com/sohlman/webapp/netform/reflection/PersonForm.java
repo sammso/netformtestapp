@@ -25,12 +25,18 @@ public class PersonForm extends MasterForm
 	
 	public PersonForm()
 	{
-		TextField l_TextField = new TextField(propertiesTable, false, true, true, true);
+		System.out.println("DEBUG -  PersonForm() #1");
+		TextField l_TextField = new TextField(propertiesTable, true, true, true);
+		System.out.println("DEBUG -  PersonForm() #2");
 		l_TextField.setComponentValidator(new ReflectionValidate());
+		System.out.println("DEBUG -  PersonForm() #3");
 		propertiesTable.setTableModelComponent(l_TextField, 1);
-		l_TextField = new TextField(propertiesTable, false, true, true, true);
+		System.out.println("DEBUG -  PersonForm() #4");
+		l_TextField = new TextField(propertiesTable, true, true, true);
+		System.out.println("DEBUG -  PersonForm() #5");
 		l_TextField.setComponentValidator(new ReflectionValidate());
-		propertiesTable.setTableModelComponent(l_TextField, 2);
+		System.out.println("DEBUG -  PersonForm() #6");
+		propertiesTable.setTableModelComponent(l_TextField, 2);		
 	}
 	
 	/**
