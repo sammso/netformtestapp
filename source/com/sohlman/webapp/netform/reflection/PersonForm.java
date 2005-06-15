@@ -25,18 +25,12 @@ public class PersonForm extends MasterForm
 	
 	public PersonForm()
 	{
-		System.out.println("DEBUG -  PersonForm() #1");
 		TextField l_TextField = new TextField(propertiesTable, true, true, true);
-		System.out.println("DEBUG -  PersonForm() #2");
 		l_TextField.setComponentValidator(new ReflectionValidate());
-		System.out.println("DEBUG -  PersonForm() #3");
 		propertiesTable.setTableModelComponent(l_TextField, 1);
-		System.out.println("DEBUG -  PersonForm() #4");
 		l_TextField = new TextField(propertiesTable, true, true, true);
-		System.out.println("DEBUG -  PersonForm() #5");
 		l_TextField.setComponentValidator(new ReflectionValidate());
-		System.out.println("DEBUG -  PersonForm() #6");
-		propertiesTable.setTableModelComponent(l_TextField, 2);		
+		propertiesTable.setTableModelComponent(l_TextField, 2);	
 	}
 	
 	/**
@@ -52,16 +46,16 @@ public class PersonForm extends MasterForm
 		//
 		// Components to Person fields
 		//
-		firstNameTextField.setComponentData(new ReflectionData(l_Person, "getFirstName", "setFirstName"));
+		firstNameTextField.setComponentData(new ReflectionData(l_Person, "firstName"));
 		firstNameTextField.setComponentValidator(new ReflectionValidate());
 		
-		lastNameTextField.setComponentData(new ReflectionData(l_Person, "getLastName", "setLastName"));
+		lastNameTextField.setComponentData(new ReflectionData(l_Person, "lastName"));
 		lastNameTextField.setComponentValidator(new ReflectionValidate());
 		
 		ObjectCollectionTableModel l_ObjectCollectionTableModel = new ObjectCollectionTableModel();
 		l_ObjectCollectionTableModel.setCollection(l_Person.getPersonProperties());
 		l_ObjectCollectionTableModel.setColummnCount(2);
-		l_ObjectCollectionTableModel.setCollectoinItemClass(PersonProperty.class);
+		l_ObjectCollectionTableModel.setCollectionItemClass(PersonProperty.class);
 		l_ObjectCollectionTableModel.setParentObjectForCollectionItem(l_Person);
 		l_ObjectCollectionTableModel.assignSetParentMethodForItem("setPerson");
 		l_ObjectCollectionTableModel.assignCollectionColumn("Name",1);

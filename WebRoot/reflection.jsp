@@ -18,7 +18,7 @@
 <nf:form>
 	<table>
 		<tr>
-			<td>First name : </td>
+			<td>First name :</td>
 			<td><nf:textField component="firstNameTextField" notValidClass="notvalid"/></td>
 		</tr>
 		<tr>

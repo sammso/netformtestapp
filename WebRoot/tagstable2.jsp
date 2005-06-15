@@ -15,10 +15,9 @@ same as s second (2) list  and by modifying data inside list naturally changed d
 	<li><a href="source.jsp?source=tagstable2.jsp">tagstable2.jsp</a></li>	
 </ul>
 <nf:form>
-${form.tableList.displayRowCount}
 <table cellpadding="1" cellspacing="1" border="1" >
 <tr>
-	<td>(1) Table</td><td>(2) Edit - Choise List in Table</td>
+	<td>(1) Table (rows = ${form.tableList.displayRowCount})</td><td>(2) Edit - Choise List in Table</td>
 </tr>
 <tr>
 <td valign="top" >
